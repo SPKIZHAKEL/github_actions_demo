@@ -1,0 +1,18 @@
+triggering workflows in multiple ways:
+
+1. repository event:
+    push
+    issues
+    pull_request
+    pull_request_review
+    fork
+
+2. manual trigger:
+    triggered via the UI - triggered by the actions tab in github
+    triggered via an api call 
+    triggered via another workflow
+
+3. schedule:
+    runs as a cron job
+
+    note: there can more than 1 trigger event for one workflow. need to use array in such case
