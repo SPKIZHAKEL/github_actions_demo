@@ -1,0 +1,43 @@
+key: value (num, string, bool)
+
+1. dictionary within dictionary=>
+config:
+    path: test/demo.yaml
+    environment: staging
+
+
+2. arrays in yaml
+'-' before each array entry
+u can keep an array of anything
+even objects
+eg: array with 3 entriese of primitive types (note u can keep even diff types in yaml arrays)
+
+colors:
+    - red
+    - green
+    - 10
+
+eg with mix:
+
+colors:
+    - red
+    - green
+    - 10
+
+
+eg with objects
+colors:
+    - name: red
+      hex:m ff0000
+    - name: green
+      hex:m ff0000
+    - 1name: yellow
+      hex:m ff0000
+      labels:// can nest at any level
+        - red
+        - green
+        - 10
+
+note: the hierarchy gets displayed on top in vscode in yaml file
+
+note: if a value is defined for a key it cant have a child

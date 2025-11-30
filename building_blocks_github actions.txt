@@ -1,0 +1,31 @@
+broadly:
+
+workflows-> jobs -> steps
+
+# WORKFLOW:
+
+    defined at repo level.
+    define which triggers start the workflows
+    are composed of 1 or more jobs
+
+# JOBS 
+    are defined at the workflow level
+    define in which execution env they run
+    are composed of one or more steps
+    run in parallel by default
+
+#STEPS
+
+    are defined at the job level
+    define the actual script or github action that will be executed
+    run sequentially by default (if u want stuff to be in parallel the JOB has to be parallel)
+
+
+    note: jobs run in separate machines 
+
+
+note: they keys of the same object should be at the same indentation
+
+note: when defining multi line script u need to use '|'
+
+by default if a step fails the job and hence workflow is consdiered fail and by default the next step is not executed
