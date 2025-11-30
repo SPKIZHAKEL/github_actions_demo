@@ -16,3 +16,7 @@ triggering workflows in multiple ways:
     runs as a cron job
 
     note: there can more than 1 trigger event for one workflow. need to use array in such case
+
+
+note: In GitHub Actions YAML, the - character indicates a list item (sequence entry).
+note: 6 digit cron gives error
