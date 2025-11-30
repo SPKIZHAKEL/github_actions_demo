@@ -5,8 +5,8 @@ on:
     pull_request: 
     schedule: 
         - cron: '*/5 * * * *'
-    workflow_dispatch: #manual trigger from UI
-    
+    workflow_dispatch: #manual trigger from UI 
+
 jobs:
     echo:
         runs-on: ubuntu-latest

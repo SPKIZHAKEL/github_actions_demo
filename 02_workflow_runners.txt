@@ -1,0 +1,14 @@
+workflow runners are virtual servers that execute jobs from workflows
+there are 2 types:
+1. github-hosted (standard):
+    windows and ubuntu - 2 cores, 7 gb ram, 14 stroage
+    it is a managed service 
+    a vm is scoped to a job: steps shared the VM but jobs dont
+    so each job receives a clean VM instance
+
+2. self hosted runners
+    runs workflows on any infra of ur chouce
+    full control over VM infra
+    its not managed, meaning we need to take care of OS patching
+    can be added at the repository, organization or enterprise level
+    jobs do not necessarily hve to run o clean instnces
