@@ -1,0 +1,8 @@
+actions: custom applications to perofrom complex, fequently repeated tasks
+
+some actions are pre defined for eg npm start etc doesnt need sperate set of run commands
+its already predefined as -> actions/setup-node@v3
+so this avoids repetitive and extensive commands which prevents code duplication
+1. can be configured via the 'with' key-value pair eg if u wanna specify a particular node version
+2. can be combinde with other steps: we can encapsualte set up tasks before running other commands
+3. we can create out own actions for public or private use
