@@ -1,0 +1,24 @@
+activity types:
+
+specify which types of certain triggers execute our workflow
+many trigger has multiple activity types which we can leverage
+
+for eg in case of pull_request
+there are mulitple activity types:
+1. opened
+2. synchronize
+3. closed
+4. assigned
+5. labeled
+6. edited
+
+so eg:
+
+on:
+    pull_request:
+        types: ['opened','synchronize']
+        branch:
+            - main
+            - 'releases/**'
+
+note: the activity types are in OR conditon!

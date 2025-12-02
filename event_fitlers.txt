@@ -1,0 +1,19 @@
+Event filters:
+specify under what conditon the specifc event 
+triggers our workflow. most triggers can be confgured to specify when they should run
+
+for eg for push event u can have 
+1. branches - specifies which brnaches must match in order for workflow to execute
+    eg branches:
+        - main
+        - 'releases/**' #should match pattern
+       paths-ignore:
+        - 'docs/**' # any changes to docs should not trigger anything
+
+note: if there are multiple filter conditions then all need to be satisfied
+
+2. branches_ignore
+3. tags
+4. tags_ignore
+5. paths
+6. paths_ignore
