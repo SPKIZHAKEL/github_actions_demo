@@ -22,3 +22,6 @@ on:
             - 'releases/**'
 
 note: the activity types are in OR conditon!
+
+note: for pull_request:[closed] and branches: [main] it would mean a PR merging 
+INTO main where main is target

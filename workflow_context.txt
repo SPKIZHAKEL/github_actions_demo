@@ -1,0 +1,29 @@
+access info about runs, variables, jobs and much more
+
+github providers multiple sources of data in different contexts so that we can easily provide all necessary info to our workloads
+
+eg
+
+github:
+1. commit SHA
+2. event name
+3. ref of branch or tag triggering the workflow
+
+env:
+contains variales that have been defined in a workflow, job or step. Chnages based on which part of the workflow is executing
+
+inputs:
+contains input properties passed via the keyword 'with' to an action to a reuable workflow or to a manually triggered workflow
+eg with: version (in case of node)
+
+vars:
+contains custom configuration variables set at the organization, repository and environment levels
+
+secrets:
+
+matrix:
+
+and many more
+
+note: that every context cannot not be access from any part of the workflow
+check docs for more info
