@@ -1,0 +1,10 @@
+github expressions:
+
+allow you to use dynamic values and expression in your workflows
+can be used to reference info from mulitple sources within workflow
+
+must use the ${{}} syntax
+
+can be any combination of: literal values, context values and functions
+
+also support the use of operator such as !, <, >, && etc

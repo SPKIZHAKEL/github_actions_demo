@@ -1,0 +1,37 @@
+It allows dynamic names using variables, like branch names, commit messages, PR numbers, etc.
+
+Example:
+
+run-name: "Build by ${{ github.actor }} on ${{ github.ref_name }}"
+
+
+This shows up as the name of the specific run, e.g.:
+
+Build by alice on feature/login
+
+run-name can be customized per run, while name cannot.
+
+✅ name: (workflow name)
+
+Defines the name of the workflow itself, as it appears in the GitHub Actions tab.
+
+Example:
+
+name: CI Pipeline
+
+
+This shows up here:
+Actions → CI Pipeline
+
+It is static and does not change per run (unless you edit the workflow file).
+
+	
+🧠 Example comparing both
+name: Deploy App
+run-name: "Deploy triggered by ${{ github.actor }} on ${{ github.ref_name }}"
+
+
+Workflow appears in sidebar as: Deploy App
+
+A run appears as:
+Deploy triggered by bob on main

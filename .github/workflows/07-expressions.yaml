@@ -1,0 +1,28 @@
+name: 07-expressions
+on: 
+    push:
+    workflow_dispatch: 
+        inputs:
+          debug: # this will give debug checbox when running wokrflow and if set to yes one can put that as conditional logic to output maybe diff variables in diff parts of ur workflow
+            description: 'Enable debug mode'
+            type: boolean
+            required: false
+            default: false
+jobs:
+    echo:
+        runs-on: ubuntu-latest
+        steps:
+            - name: '[debug] Print start-up data'
+              if: ${{inputs.debug==true}} 
+              run: |
+                echo "Triggered by: ${{github.event_name}}"
+                echo "Branch: ${{github.ref}}"
+                echo "Commit SHA: ${{github.sha}}"
+                echo "Runner OS: ${{runner.os}}"
+
+            - name: '[debug] Print when triggered from main'
+              if:
+                ${{ inputs.debug && github.ref=='refs/head/main'}}
+              run: echo "I was triggered by main" 
+            - name: Greeting
+              run: echo "Hello, World"
