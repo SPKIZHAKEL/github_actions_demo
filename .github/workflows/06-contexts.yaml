@@ -1,4 +1,4 @@
-name: 06-contexts.yaml
+name: 06 - contexts.yaml
 on:
     push:
     workflow_dispatch: 

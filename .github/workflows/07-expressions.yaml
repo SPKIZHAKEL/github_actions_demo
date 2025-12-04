@@ -1,4 +1,6 @@
 name: 07 - expressions
+run-name: 07 - Using expressions | DEBUG - ${{ inputs.debug && 'ON' || 'OFF'}}
+#abv will keep dynamic name based on if debug is on or off
 on: 
     push:
     workflow_dispatch: 
@@ -22,7 +24,7 @@ jobs:
 
             - name: '[debug] Print when triggered from main'
               if:
-                ${{ inputs.debug && github.ref=='refs/head/main'}}
+                ${{ inputs.debug && github.ref=='refs/heads/main'}}
               run: echo "I was triggered by main" 
             - name: Greeting
               run: echo "Hello, World"
