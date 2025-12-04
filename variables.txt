@@ -1,0 +1,12 @@
+variables:
+set and reuse non-sensitive config info
+variables override in following order step overrides job overrides workflow
+
+to use a variable across multiple workflows use 
+1. organization variables
+2. repo variables
+3. environment variables
+
+in precedne order from 3>2>1
+
+to access these types of var u need to use var context-> vars.NAME
