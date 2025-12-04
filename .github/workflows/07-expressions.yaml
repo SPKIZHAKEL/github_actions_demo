@@ -1,4 +1,4 @@
-name: 07-expressions
+name: 07 - expressions
 on: 
     push:
     workflow_dispatch: 
