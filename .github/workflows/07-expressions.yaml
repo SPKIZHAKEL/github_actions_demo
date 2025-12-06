@@ -2,7 +2,7 @@ name: 07 - expressions
 run-name: 07 - Using expressions | DEBUG - ${{ inputs.debug && 'ON' || 'OFF'}}
 #abv will keep dynamic name based on if debug is on or off
 on: 
-    push:
+    # push:
     workflow_dispatch: 
         inputs:
           debug: # this will give debug checbox when running wokrflow and if set to yes one can put that as conditional logic to output maybe diff variables in diff parts of ur workflow
