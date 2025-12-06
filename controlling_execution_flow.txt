@@ -1,0 +1,32 @@
+execute jobs and steps conditonally and set dependeicnes between jobs
+
+
+
+standard execution:
+    - downstream jobs and steps only execute when upstream jobs and steps succeed
+    - i.e no if condition
+
+
+
+conditonal execution:
+    - downstream jobs and steps can be executed even if upstream ones fail
+
+
+
+# sequential job exection via the 'needs' key
+
+1. non dependent execution: 
+    all jobs are executed in parallel by default
+
+2. dependent execution:
+    jobs wait until their dependies successfully execute
+
+eg jobs:
+    job1:
+    job2:
+    job3:
+        needs:
+         - job1
+         - job2
+    job4:
+        needs: job1 #so job4 will execute immeadiately once job1 is done unlike job 3 which needs both job 1 and 2
