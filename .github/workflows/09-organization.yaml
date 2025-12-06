@@ -1,12 +1,12 @@
 name: 09 - organization workflow
 on:
-    push:
+    # push:
     workflow_dispatch: 
 env:
     UNDEFINED_VAR_DEFAULT: ${{ vars.UNDEFINED_VAR || 'default' }}
 jobs: 
     echo2:
-        runs-on: ubuntu -latest
+        runs-on: ubuntu-latest
         steps:
             - name: Print Variables
               run: |

@@ -1,0 +1,15 @@
+give out of the box functions for complex behaviour
+
+1. General purpose functions:
+provides a et of utility functions to interact with data from multiple contexts and model mroe complex behaiour,
+such as more advanced control of the workflow and job execution.
+    a. contains()
+    b. startWith()
+    c. endsWith()
+    d. fromJSON() etc fromjson can be used to convert vars from stirng to diff data types
+
+2. status check functions:
+provide a set of function that allow using status of workflow, previous jobs or steps to define whether a job or step should be executed
+
+eg sucess(), failure(), always(), cancelled()
+eg !cancelled() can be used to execute jobs or steps even if previous jobs or steps failed, but to prevent execution in case workflow is cancelled
