@@ -12,10 +12,10 @@ jobs:
               run: echo "${{github.event.pull_request.title}}"
             
             - name: Print PR labels
-              run: echo "${{fromJson(github.event.pull_request.labels)}}"
+              run: echo "${{github.event.pull_request.labels}}"
             
             - name: Bug Step
-              if: failure() && ${{!cancelled()}} && ${{contains(fromJson(github.event.pull_request.title),'fix')}}
+              if: ${{!cancelled()}} && ${{contains(github.event.pull_request.title,'fix')}}
               run: 
                 echo "I am a bug fix"
 
