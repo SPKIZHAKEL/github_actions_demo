@@ -9,13 +9,13 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Print PR title
-              run: echo "${{github.event_name}}"
+              run: echo "${{github.event.pull_request.title}}"
             
             - name: Print PR labels
               run: echo "${{fromJson(github.event.pull_request.labels)}}"
             
             - name: Bug Step
-              if: failure() && ${{!cancelled()}}
+              if: failure() && ${{!cancelled()}} && ${{contains(fromJson(github.event.pull_request.title),'fix')}}
               run: 
                 echo "I am a bug fix"
 
