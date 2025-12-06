@@ -1,0 +1,27 @@
+name: 09 - organization workflow
+on:
+    workflow_dispatch: 
+env:
+    UNDEFINED_VAR_DEFAULT=${{vars.UNDEFINED_VAR||'local'}}
+jobs: 
+    echo2:
+        runs-on: ubuntu -latest
+        steps:
+            - name: Print Variables
+              run: |
+                echo "repo var: ${{vars.REPOSITORY_VAR}}"
+    echo-prod:
+        runs-on: ubuntu-latest
+        environment: prod #refers to github env. it indicates that for this job use this environment
+        steps:
+            - name: Print variable
+              run: |
+                echo "repo variable ${{vars.REPOSITORY_VAR}}"
+                echo "Environment variable ${{vars.TARGET_VAR}}"
+
+    echo-undefined: #job for printing undefined vars
+        runs-on: ubuntu-latest
+        steps:
+            - name: Print undefiend vars
+              run: |
+                echo "Org var: ${{env.UNDEFINED_VAR_DEFAULT}}"            
