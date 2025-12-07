@@ -1,0 +1,29 @@
+inputs help privde info to customize workflows and actions
+
+it enables us to request specific info from the okflow or action caller and use this info at runtime
+
+eg 
+
+inputs:
+    demo-var:
+        description:'..'
+        required: true
+
+
+to provide info to custom actions we use with keyword
+note: inputs must be defined in the definition of resuable workflows
+or custom action so that they can be correctly used
+
+eg
+
+jobs:
+    job1:
+        steps:
+         - name: ping url
+           uses:
+            ping-url-example@v1
+           with:
+            url: https://www.wxample.com
+            max-trials: 10
+
+eg: while setting up node specifying target version

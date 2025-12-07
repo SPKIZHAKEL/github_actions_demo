@@ -17,6 +17,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Running unit tests
+            #   continue-on-error: true # will execute even if job fails
               run: 
                 echo "Running tests..."
             - name: Failing tests
