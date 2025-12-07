@@ -4,10 +4,10 @@ on:
         inputs:
             dry-run:
                 type: boolean
-                description: 'Skiip deployment and only priint build output'
+                description: 'Skip deployment and only print build output'
                 default: false
             target:
-                type: environment
+                type: environment #populated based on environments defined in ur repo!
                 required: true
                 description: 'Which environment the workflow will target'
             tag:
@@ -26,7 +26,7 @@ jobs:
               run: |
                 echo "Building from tag ${{inputs.tag}}"
     deploy:
-        runs-on: ubunutu-latest
+        runs-on: ubuntu-latest
         needs: build
         if: ${{!inputs.dry-run}}
         environment: ${{inputs.target}}
