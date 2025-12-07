@@ -1,0 +1,31 @@
+outputs
+
+output data from jobs for later usage
+
+we need an id field in the step to indicate 
+later in the output which step details are needed
+
+so overall u need to:
+1. define an id for the step
+2. echo key-value pairs (by which u want to referene the output) into $GITHUB_OUTPUT variable, which github actions will reference for outputs
+   once the job is done
+
+3. mention the outputs in the outputs section of the job
+4. list the job as a dependency of a job that needs the output
+5. acccess the output in the other job using needs.context
+
+eg 
+jobs:
+    welcome:
+        runs-on: ubuntu-latest
+        outputs:
+            name: ${{steps.step1.outputs.NAME}} #NAME is the key defined below
+        steps:
+            - id: step1
+              run: echo "NAME=Jimmy" >> "$GITHUB_OUTPUT"
+    
+    goodbye:
+        runs-on: ubuntu-latest
+        needs: welcome
+        steps:
+         - run: echo "Bye,  ${{needs.welcome.outputs.name}}"
