@@ -1,0 +1,46 @@
+name: 12 - Working with Mistake Outputs
+on:
+    workflow_dispatch: 
+        inputs:
+            build-status:
+                description: 'build status value'
+                type: choice
+                options:
+                    - success
+                    - failure
+                default: success
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        outputs:
+            build-status: ${{steps.build.outputs.status}}
+            output1: ${{steps.build.outputs.output1}}
+        steps:
+            - name: Print GITHUB_OUTPUT path 
+              run:
+                echo "$GITHUB_OUTPUT"
+                
+            - id: build
+              name: Build
+              run: |
+                echo "$GITHUB_OUTPUT"
+                echo "status=${{inputs.build-status}}" >> "$GITHUB_OUTPUT"
+                echo "output1=value1" >> "$GITHUB_OUTPUT"
+                echo "output2=value2" >> "$GITHUB_OUTPUT"
+                echo "old output file:"
+                cat $GITHUB_OUTPUT # prnting here since we are redirecting in abv steps!
+                echo "mistake=true" > "$GITHUB_OUTPUT"
+                echo "update output file:"
+                cat $GITHUB_OUTPUT
+    deploy:
+        runs-on: ubuntu-latest
+        needs: build
+        if: ${{needs.build.outputs.build-status == 'success'}}
+        steps:
+            - name: Deploy
+              run: | 
+                echo "Deploying"
+            - name: Print output
+              run: echo "output1 ${{needs.build.outputs.output1}}" # this will not show value1 because of the mistake entry in the GITHUB_OUTPUT file
+                
+# note if had defined the mistake step as a sep step both jobs will work without any issue since they have different output file

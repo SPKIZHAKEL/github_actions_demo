@@ -41,3 +41,54 @@ colors:
 note: the hierarchy gets displayed on top in vscode in yaml file
 
 note: if a value is defined for a key it cant have a child
+
+
+note:
+1. YAML layer (always applies)
+
+GitHub Actions workflows are YAML files.
+
+At the YAML level:
+
+Single '...' and double "..." quotes both define strings
+
+YAML itself does not care which one you use most of the time
+
+name: 'Build'
+name: "Build"
+name: Build
+
+
+All three are valid YAML strings.
+
+Why quote at all in YAML?
+
+You need quotes when:
+
+The value contains : # {} []
+
+The value starts with *, &, ?, -
+
+You want to preserve spaces or special characters
+
+run: "echo hello: world"
+
+2. GitHub Actions expression layer
+
+This applies to:
+
+if:
+
+${{ ... }}
+
+env:
+
+with:
+
+matrix:
+
+Here:
+
+ONLY single quotes are used for strings
+
+Double quotes are invalid

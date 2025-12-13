@@ -29,3 +29,8 @@ jobs:
         needs: welcome
         steps:
          - run: echo "Bye,  ${{needs.welcome.outputs.name}}"
+
+
+NOTE: STEPS DO NOT SHARE THE SAME GIHUB ACTIONS FILE
+IF U OUTPUT $GITHUB_OUTPUT FOR ANY 2 STEPS u will see hash value in the path is different
+hence overwriting the GITHUB_OUTPUT in one file doesnt affect the other

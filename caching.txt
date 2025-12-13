@@ -1,0 +1,8 @@
+Cahcing -
+speed up workflows runs by caching stable file
+it allows to store files and retrieve them based on a key.  
+workflpw can access the cache from their brnach or from default branch
+
+worlflow:
+wroflow run starts-> execute cache step -> cache matching key? if yes-> restore cache
+if no-> then install dependencies
