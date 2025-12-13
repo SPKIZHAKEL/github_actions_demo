@@ -38,7 +38,7 @@ jobs:
               id: cache-key
               run: |
                 echo "CACHE_KEY=deps-node-modules-${{ hashFiles('13-caching/react-app/package-lock.json') }}" >> "$GITHUB_OUTPUT"
-            
+            #calculating cache key to be used in next step in current step
             - name: Dowload Cached Dependencies
               uses: actions/cache@v4
               if: ${{inputs.use-cache}}
@@ -46,9 +46,9 @@ jobs:
               with:
                 path: 13-caching/react-app/node_modules
                 key: ${{steps.cache-key.outputs.deps-cache-key}}
-                # - name: Install dependencies
-                #   if: steps.cache.outputs.cache-hit!='true' 
-                #   run: npm ci
+            - name: Install dependencies #if cache miss install dependencies
+              if: steps.cache.outputs.cache-hit!='true' 
+              run: npm ci
     lint-test:
         runs-on: ubuntu-latest
         needs: install-deps
