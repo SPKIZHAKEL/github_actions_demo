@@ -1,4 +1,4 @@
-Cahcing -
+Caching -
 speed up workflows runs by caching stable file
 it allows to store files and retrieve them based on a key.  
 workflpw can access the cache from their brnach or from default branch
@@ -6,3 +6,33 @@ workflpw can access the cache from their brnach or from default branch
 worlflow:
 wroflow run starts-> execute cache step -> cache matching key? if yes-> restore cache
 if no-> then install dependencies
+
+When is the cache reused?
+
+Only when the cache key matches.
+
+key: ubuntu-latest-npm-<hash>
+
+Same key → cache reused
+Different key → new cache created
+Real example with dependencies
+First run
+key: ubuntu-latest-npm-AAA
+
+
+Cache does not exist → create it.
+
+Second run (same deps)
+key: ubuntu-latest-npm-AAA
+
+
+Cache exists → reuse it.
+
+After adding a dependency
+
+package-lock.json changes → hash changes:
+
+key: ubuntu-latest-npm-BBB
+
+
+Old cache not reused → new cache created.
