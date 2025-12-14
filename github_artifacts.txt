@@ -21,3 +21,65 @@ stored abt 7 days
 managed by a single action - cache
 recommend when stoed files need to be accessed only WITHIN the workflow
 eg build dependencies
+
+
+
+######################################################
+
+Exact flow (step by step)
+1️⃣ Files exist on the runner
+
+After actions/checkout, your runner has:
+
+Runner filesystem ($GITHUB_WORKSPACE)
+└── 14-artifacts/react-app/build/
+    ├── index.html
+    └── static/
+
+2️⃣ upload-artifact runs
+
+This step:
+
+uses: actions/upload-artifact@v4
+
+
+Reads the files from the runner filesystem
+
+Compresses them
+
+Uploads them to GitHub’s artifact storage
+
+3️⃣ Where they live after upload
+
+They are stored:
+
+In GitHub Actions Artifacts
+
+Associated with that workflow run
+
+Under the artifact name:
+
+app
+
+
+You can find them:
+
+GitHub repo → Actions
+
+Click the workflow run
+
+Scroll to Artifacts
+
+Download app
+
+What happens after the job ends
+
+The runner is destroyed
+
+Files on the runner are gone
+
+The artifact remains in GitHub storage
+
+By default:
+
+Artifacts are kept for 90 days (configurable)
