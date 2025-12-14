@@ -46,6 +46,7 @@ jobs:
               with:
                 path: 13-caching/react-app/node_modules
                 key: ${{steps.cache-key.outputs.CACHE_KEY}}
+                #we use this synatx and not output name since its an output in another step but in same job!
             - name: Install dependencies #if cache miss install dependencies
               if: steps.cache.outputs.cache-hit!='true' 
               run: npm ci
@@ -118,3 +119,5 @@ jobs:
                                                                 
                                                                 
 # the reason why we are again calling cache action in last 2 jobs is since on gitub hosted runners cache is not persisted between job. so we are resuing the key by outputting in previous job
+
+#also note that here we are purely going by package-lock.json dependencies being contained in node_modules. there can be even others depending on the platform eg macos, windows..so it doesnt make sense to cache it like how we are doing here..should ideally inlcude runner.os as well in the key to avid sharing same cache across platforms

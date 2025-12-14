@@ -1,0 +1,23 @@
+Artifacts:
+
+Share data between hobs and store data after workflows are completed
+
+#Artifacts:
+- sotred for up to 90- days
+- managed by 2 actions - upload artifact
+download artifact
+
+note: upload and download are in SAME WORKFLOW
+
+- we need artifacts when stored file are liekly to be accessed OUTSIDE the workflow for eg -
+eg build outputs
+test results
+logs
+
+
+
+#Caching:
+stored abt 7 days
+managed by a single action - cache
+recommend when stoed files need to be accessed only WITHIN the workflow
+eg build dependencies

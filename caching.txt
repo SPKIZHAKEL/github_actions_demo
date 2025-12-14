@@ -36,3 +36,75 @@ key: ubuntu-latest-npm-BBB
 
 
 Old cache not reused → new cache created.
+
+
+
+####################################################
+
+2️⃣ How cache can still be reused
+
+Even though the runner doesn’t persist the cache, GitHub Actions uploads the cache to GitHub storage after the step/job finishes.
+
+Later jobs (or later workflow runs) can download the cache from GitHub storage using the same key.
+
+3️⃣ Illustration
+Job 1 (fresh runner)
+ ├─ step: restore cache → downloaded to runner
+ ├─ step: use node_modules
+ └─ end of job → runner destroyed, cache uploaded to GitHub storage
+
+Job 2 (fresh runner)
+ ├─ step: restore cache → downloaded from GitHub storage to new runner
+ └─ step: use node_modules
+
+
+Each job gets a new runner, so nothing is left behind from previous jobs.
+
+Only the cache uploaded to GitHub storage persists between jobs.
+
+
+#####################################################################
+
+Workflow Run
+┌───────────────────────────┐
+│ Job 1:                     │
+│ ┌───────────────────────┐ │
+│ │ Step 1: Restore cache  │ │
+│ │ Key = os-node-<hash>   │ │
+│ │ ┌───────────────────┐ │ │
+│ │ │ Cache found?      │ │ │
+│ │ │ Yes → restore to  │ │ │
+│ │ │ path: node_modules│ │ │
+│ │ └───────────────────┘ │ │
+│ └───────────────────────┘ │
+│ ┌───────────────────────┐ │
+│ │ Step 2: Use node_modules│ │
+│ └───────────────────────┘ │
+│ End of Job → Runner is destroyed │
+│ Cache uploaded to GitHub Storage │
+└───────────────────────────┘
+
+┌───────────────────────────┐
+│ Job 2 (same workflow or later run) │
+│ ┌───────────────────────┐ │
+│ │ Step 1: Restore cache  │ │
+│ │ Key = os-node-<hash>   │ │
+│ │ ┌───────────────────┐ │ │
+│ │ │ Cache found?      │ │ │
+│ │ │ Yes → restore to  │ │ │
+│ │ │ path: node_modules│ │ │
+│ │ └───────────────────┘ │ │
+│ └───────────────────────┘ │
+│ ┌───────────────────────┐ │
+│ │ Step 2: Use node_modules│ │
+│ └───────────────────────┘ │
+│ End of Job → Runner destroyed │
+└───────────────────────────┘
+
+Cache key (os-node-<hash>) determines which cache is restored.
+
+Restored cache goes to the path you specify (e.g., node_modules) in the runner.
+
+Runner is ephemeral — everything disappears after the job finishes.
+
+Cache is stored remotely in GitHub storage and can be reused in future jobs/runs if the key matches.
